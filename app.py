@@ -67,4 +67,4 @@ def enable_camera():
     camera = cv2.VideoCapture(0)
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-app.run(debug=True)
+app.run(host="0.0.0.0")
