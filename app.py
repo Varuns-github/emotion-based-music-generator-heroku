@@ -29,6 +29,7 @@ def capture():
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces_detected = face_haar_cascade.detectMultiScale(gray_img, 1.32, 5)
     
+    predicted_emotion = "Happy"
     for (x, y, w, h) in faces_detected:
         roi_gray = gray_img[y:y + w, x:x + h]
         roi_gray = cv2.resize(roi_gray, (48, 48))
@@ -36,11 +37,11 @@ def capture():
         img_pixels = np.expand_dims(img_pixels, axis=0)
         img_pixels /= 255
 
-    predictions = model.predict(img_pixels)
+        predictions = model.predict(img_pixels)
 
-    max_index = np.argmax(predictions[0])
-    emotions = ["Angry", "Disgust", "Fear", "Happy", "Neutral", "Sad", "Surprise" ]
-    predicted_emotion = emotions[max_index]
+        max_index = np.argmax(predictions[0])
+        emotions = ["Angry", "Disgust", "Fear", "Happy", "Neutral", "Sad", "Surprise" ]
+        predicted_emotion = emotions[max_index]
 
     return jsonify(status="success", predicted_emotion=predicted_emotion)
 
