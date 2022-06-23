@@ -1,3 +1,4 @@
 Flask
 tensorflow-cpu
 opencv-contrib-python-headless==4.2.0.32
+pillow
