@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function capture(){
+            fetch(`http://127.0.0.1:5000/capture`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("resultFound").innerHTML=data.predicted_emotion
+            });
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+<body>
+   <div class="app-wrapper">
+     <div class="header-wrapper">
+        Emotion Recognition
+     </div>
+     <div class="body-wrapper">
+        <div class="body-left">
+            <img src="{{ url_for('video_feed') }}" width="100%">
+            <button onclick="capture()">
+                click to capture
+            </button>
+            <div id="resultFound" class="res-label">
+        </div>
+    </div>
+    <div class="bottom-cntr">
+    <div class="members-foot">
+        Varun - 210220256
+    </div>
+   </div>
+</body>
+</html>
+
+

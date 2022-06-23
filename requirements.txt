@@ -1,0 +1,5 @@
+django
+gunicorn
+django-heroku
+tf-nightly
+opencv-python
