@@ -1,5 +1,6 @@
 from flask import Flask,Response,request,render_template,jsonify
 import cv2
+from os import environ
 from tensorflow.keras.preprocessing import image
 import numpy as np
 from tensorflow.keras.models import  load_model
@@ -67,4 +68,4 @@ def enable_camera():
     camera = cv2.VideoCapture(0)
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-app.run(host="0.0.0.0")
+app.run(port=environ.get("PORT", 5000),host="0.0.0.0")
