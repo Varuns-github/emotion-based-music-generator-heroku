@@ -44,5 +44,5 @@ def capture():
 
     return jsonify(status="success", predicted_emotion=predicted_emotion)
 
-# app.run(port=environ.get("PORT", 5000),host="0.0.0.0")
-app.run(debug=True)
+app.run(port=environ.get("PORT", 5000),host="0.0.0.0")
+# app.run(debug=True)
