@@ -116,7 +116,7 @@
         body: JSON.stringify({image: data})
       })
       .then(response => response.json())
-      .then(data => document.getElementById('emotion').innerHTML = data.predicted_emotion)
+      .then(data => document.getElementById('emotion').innerHTML = `Your current emotion is ${data.predicted_emotion}`)
 
     } else {
       clearphoto();
@@ -139,22 +139,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="contentarea">
+    <div class="wrapper">
       <div class="header-wrapper">
         Emotion Recognition
-     </div>
-        <div class="camera">
-          <video id="video">Video stream not available.</video>
-          <button id="startbutton">Take photo</button>
-        </div>
-        <canvas id="canvas">
-        </canvas>
-        <div id="emotion" />
-        <div class="bottom-cntr">
-          <div class="members-foot">
-              Varun - 210220256
-          </div>
-         </div>
       </div>
+      <div class="content-area">
+        <div class="camera">
+          <video id="video"></video>
+          <canvas id="canvas" />
+        </div>
+        <button id="startbutton">Capture Emotion</button>
+        <div id="emotion">Please take a photo to capture your emotion</div>
+      </div>
+    </div>
+    <footer class="footer">
+      Varun - 210220256
+    </footer>
 </body>
 </html>
