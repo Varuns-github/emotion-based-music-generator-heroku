@@ -1,7 +1,5 @@
 import random
 
-from scipy import rand
-
 angry = [
     "https://github.com/Varuns-github/emotion-based-music-generator/blob/main/MusicDataset/Angry/121.mp3",
     "https://github.com/Varuns-github/emotion-based-music-generator/blob/main/MusicDataset/Angry/122.mp3",
