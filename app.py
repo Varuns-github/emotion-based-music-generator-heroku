@@ -4,9 +4,10 @@ import numpy as np
 from PIL import Image
 from io import BytesIO
 from os import environ
-from flask import Flask,request,render_template,jsonify
-from tensorflow.keras.preprocessing import image
+from dataset import return_music_url
 from tensorflow.keras.models import  load_model
+from tensorflow.keras.preprocessing import image
+from flask import Flask,request,render_template,jsonify
 
 app = Flask(__name__)
 face_haar_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -43,7 +44,9 @@ def capture():
     emotions = ["Angry", "Disgust", "Fear", "Happy", "Neutral", "Sad", "Surprise" ]
     predicted_emotion = emotions[max_index]
 
-    return jsonify(status="success", predicted_emotion=predicted_emotion)
+    predirect_music_url = return_music_url(predicted_emotion)
+
+    return jsonify(status="success", predicted_emotion=predicted_emotion, predirect_music_url=predirect_music_url)
 
 app.run(port=environ.get("PORT", 5000),host="0.0.0.0")
 # app.run(debug=True)

@@ -103,6 +103,8 @@
       .then(data => {
         document.getElementById('emotion').innerHTML = `Your current emotion is "${data.predicted_emotion}"`;
         document.getElementById('emotion-based-music').innerHTML = 'Your current emotion matches the below music';
+        // set source of the music player to the music that matches the emotion
+        document.getElementById('music-player').src = `${data.predirect_music_url}?raw=true`;
         document.getElementById('music-player').style.display = 'block';
       })
     }
@@ -137,7 +139,7 @@
         <div id="emotion">Please take a photo to capture your emotion</div>
         <div id="emotion-based-music"></div>
         <audio id="music-player" controls>
-          <source src = "https://github.com/Varuns-github/emotion-based-music-generator/blob/main/MusicDataset/Angry/121.mp3?raw=true type = "audio/mpeg">
+          <source id="audio" src="" type="audio/mpeg">
         </audio>
       </div>
       <footer class="footer">
