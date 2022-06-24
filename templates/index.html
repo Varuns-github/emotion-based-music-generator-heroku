@@ -20,7 +20,6 @@
 
   var video = null;
   var canvas = null;
-  var photo = null;
   var startbutton = null;
 
   function showViewLiveResultButton() {
@@ -42,7 +41,6 @@
     if (showViewLiveResultButton()) { return; }
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
-    photo = document.getElementById('photo');
     startbutton = document.getElementById('startbutton');
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -77,20 +75,6 @@
       takepicture();
       ev.preventDefault();
     }, false);
-
-    clearphoto();
-  }
-
-  // Fill the photo with an indication that none has been
-  // captured.
-
-  function clearphoto() {
-    var context = canvas.getContext('2d');
-    context.fillStyle = "#AAA";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-
-    var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
   }
 
   // Capture a photo by fetching the current contents of the video
@@ -116,10 +100,11 @@
         body: JSON.stringify({image: data})
       })
       .then(response => response.json())
-      .then(data => document.getElementById('emotion').innerHTML = `Your current emotion is ${data.predicted_emotion}`)
-
-    } else {
-      clearphoto();
+      .then(data => {
+        document.getElementById('emotion').innerHTML = `Your current emotion is "${data.predicted_emotion}"`;
+        document.getElementById('emotion-based-music').innerHTML = 'Your current emotion matches the below music';
+        document.getElementById('music-player').style.display = 'block';
+      })
     }
   }
 
@@ -150,7 +135,10 @@
         </div>
         <button id="startbutton">Capture Emotion</button>
         <div id="emotion">Please take a photo to capture your emotion</div>
-        <div id="media-player"></div>
+        <div id="emotion-based-music"></div>
+        <audio id="music-player" controls>
+          <source src = "https://github.com/Varuns-github/emotion-based-music-generator/blob/main/MusicDataset/Angry/121.mp3?raw=true type = "audio/mpeg">
+        </audio>
       </div>
       <footer class="footer">
         Varun - 210220256
