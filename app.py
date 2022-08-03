@@ -44,9 +44,11 @@ def capture():
     emotions = ["Angry", "Disgust", "Fear", "Happy", "Neutral", "Sad", "Surprise" ]
     predicted_emotion = emotions[max_index]
 
-    predirect_music_url = return_music_url(predicted_emotion)
+    predicted_music_url = return_music_url(predicted_emotion)
+    predirect_music_url_a = predicted_music_url[0]
+    predirect_music_url_b = predicted_music_url[1]
+    
+    return jsonify(status="success", predicted_emotion=predicted_emotion, predirect_music_url_a=predirect_music_url_a, predirect_music_url_b=predirect_music_url_b)
 
-    return jsonify(status="success", predicted_emotion=predicted_emotion, predirect_music_url=predirect_music_url)
-
-app.run(port=environ.get("PORT", 5000),host="0.0.0.0")
-# app.run(debug=True)
+# app.run(port=environ.get("PORT", 5000),host="0.0.0.0")
+app.run(debug=True)

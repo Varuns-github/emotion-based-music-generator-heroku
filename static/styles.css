@@ -81,8 +81,22 @@ div#emotion-based-music {
 }
 
 audio {
-  margin: 15px auto 0;
   display: none;
+}
+
+.audio {
+  display: flex;
+  align-items: center;
+  margin: 15px auto 0;
+  justify-content: center;
+}
+
+.audio-identify {
+  display: none;
+  margin: 0;
+  font-size: 25px;
+  font-weight: 600;
+  margin-right: 15px;
 }
 
 @media screen and (max-width: 768px) {
