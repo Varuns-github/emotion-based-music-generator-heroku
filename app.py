@@ -50,5 +50,5 @@ def capture():
     
     return jsonify(status="success", predicted_emotion=predicted_emotion, predirect_music_url_a=predirect_music_url_a, predirect_music_url_b=predirect_music_url_b)
 
-# app.run(port=environ.get("PORT", 5000),host="0.0.0.0")
-app.run(debug=True)
+app.run(port=environ.get("PORT", 5000),host="0.0.0.0")
+# app.run(debug=True)
